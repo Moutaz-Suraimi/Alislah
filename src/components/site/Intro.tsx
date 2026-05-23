@@ -33,7 +33,7 @@ export function Intro() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white text-primary overflow-hidden will-change-[opacity,transform]"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white text-primary overflow-hidden"
         >
           {/* Subtle light background gradient */}
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-50 via-white to-white" />
@@ -49,7 +49,7 @@ export function Intro() {
               duration: 3.5,
               ease: "easeInOut",
             }}
-            className="absolute top-1/4 -start-10 h-72 w-72 rounded-full bg-gold blur-3xl pointer-events-none will-change-[opacity,transform]"
+            className="absolute top-1/4 -start-10 h-72 w-72 rounded-full bg-gold blur-3xl pointer-events-none"
           />
           <motion.div
             initial={{ opacity: 0 }}
@@ -62,7 +62,7 @@ export function Intro() {
               ease: "easeInOut",
               delay: 0.5
             }}
-            className="absolute bottom-1/4 -end-10 h-96 w-96 rounded-full bg-gold blur-3xl pointer-events-none will-change-[opacity,transform]"
+            className="absolute bottom-1/4 -end-10 h-96 w-96 rounded-full bg-gold blur-3xl pointer-events-none"
           />
           
           {/* Skip Button */}
@@ -79,7 +79,6 @@ export function Intro() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="will-change-[opacity,transform]"
             >
               <img
                 src="/logo.png"
@@ -95,7 +94,7 @@ export function Intro() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="font-display text-3xl md:text-5xl font-extrabold text-primary tracking-tight will-change-[opacity,transform]"
+              className="font-display text-3xl md:text-5xl font-extrabold text-primary tracking-tight"
             >
               مؤسسة الإصلاح المعماري للمقاولات
             </motion.h1>
@@ -105,7 +104,7 @@ export function Intro() {
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
-              className="mt-6 mb-8 h-px w-24 bg-gradient-to-r from-transparent via-gold to-transparent origin-center will-change-[transform,opacity]"
+              className="mt-6 mb-8 h-px w-24 bg-gradient-to-r from-transparent via-gold to-transparent origin-center"
             />
 
             {/* Description */}
@@ -113,7 +112,7 @@ export function Intro() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-              className="text-base md:text-xl leading-relaxed md:leading-loose text-muted-foreground font-medium px-4 will-change-[opacity,transform]"
+              className="text-base md:text-xl leading-relaxed md:leading-loose text-muted-foreground font-medium px-4"
             >
               منشأة سعودية وطنية مقرها الرياض، متخصصة في تنفيذ مشاريع المباني والأعمال الإنشائية
               والديكورات الداخلية والخارجية، وفق أعلى المواصفات الفنية.

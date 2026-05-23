@@ -130,7 +130,6 @@ function Home() {
           alt="موقع إنشائي"
           fetchPriority="high"
           loading="eager"
-          decoding="sync"
           className="absolute inset-0 -z-20 h-full w-full object-cover"
         />
         {/* Dark overlay for better text contrast */}
@@ -160,7 +159,7 @@ function Home() {
               <div key={c.title} className="flex flex-col bg-card shadow-2xl overflow-hidden border border-border/50">
                 <div className="relative h-56 w-full overflow-hidden">
                   <img src={c.img} alt={c.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" />
-                  <div className="absolute top-4 end-4 flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/70 bg-black/20 text-white backdrop-blur transition-colors hover:bg-gold hover:border-gold cursor-pointer">
+                  <div className="absolute top-4 end-4 flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/70 bg-black/20 text-white transition-colors hover:bg-gold hover:border-gold cursor-pointer">
                     <svg className="h-4 w-4 fill-current ms-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                   </div>
                 </div>
@@ -291,7 +290,7 @@ function Home() {
       {/* CTA */}
       <section className="container-x py-20">
         <div className="relative overflow-hidden rounded-2xl bg-hero-gradient p-10 text-primary-foreground md:p-16 text-center">
-          <div className="absolute -end-20 -top-20 h-72 w-72 rounded-full bg-gold/20 blur-3xl" />
+          <div className="absolute -end-20 -top-20 h-72 w-72 rounded-full bg-gold-gradient opacity-10" />
           <div className="relative flex flex-col items-center max-w-2xl mx-auto gap-6">
             <h2 className="font-display text-3xl font-extrabold md:text-4xl">
               جاهز لبدء مشروعك القادم؟
