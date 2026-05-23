@@ -85,9 +85,13 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container-x flex flex-col items-center justify-between gap-2 py-5 text-xs text-primary-foreground/60 md:flex-row">
+        <div className="container-x flex flex-col items-center justify-between gap-4 py-6 text-xs text-primary-foreground/60 md:flex-row">
           <p>© {new Date().getFullYear()} مؤسسة الإصلاح المعماري للمقاولات. جميع الحقوق محفوظة.</p>
-          <p>الرياض، المملكة العربية السعودية</p>
+          <div className="flex gap-4 items-center">
+            <p>الرياض، المملكة العربية السعودية</p>
+            <span className="h-3 w-px bg-white/20"></span>
+            <p>تم التصميم والتطوير بواسطة Suriix</p>
+          </div>
         </div>
       </div>
     </footer>

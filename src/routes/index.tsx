@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/site/Layout";
 import {
@@ -119,25 +120,54 @@ const values = [
 
 
 function Home() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    const startAutoScroll = () => {
+      // Only run on mobile/tablet (less than 1024px)
+      if (window.innerWidth >= 1024) return;
+
+      intervalId = setInterval(() => {
+        if (scrollRef.current) {
+          const container = scrollRef.current;
+          const { scrollLeft, scrollWidth, clientWidth } = container;
+          
+          // Scroll left continuously (works in RTL by scrolling to negative values)
+          container.scrollBy({ left: -320, behavior: "smooth" });
+
+          // Reset when reaching the end
+          if (Math.abs(scrollLeft) >= scrollWidth - clientWidth - 50) {
+            container.scrollTo({ left: 0, behavior: "smooth" });
+          }
+        }
+      }, 2000); // Move every 2 seconds (medium speed)
+    };
+
+    // Delay the auto-scroll start slightly to allow rendering
+    const timeoutId = setTimeout(startAutoScroll, 2000);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, []);
+
   return (
     <Layout transparentHeader>
       {/* HERO */}
       <section className="relative flex flex-col items-center justify-center pt-40 pb-56 text-center min-h-[95vh] overflow-hidden">
-        {/* Parallax Background */}
-        <motion.div
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 10, ease: "easeOut" }}
-          className="absolute inset-0 -z-20 h-full w-full"
-        >
+        {/* Optimized Background (No heavy framer-motion scale) */}
+        <div className="absolute inset-0 -z-20 h-full w-full bg-black">
           <img
             src="/hero.jpg"
             alt="موقع إنشائي"
             fetchPriority="high"
             loading="eager"
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-cover object-center opacity-90 animate-intro-fade-in"
           />
-        </motion.div>
+        </div>
         
         {/* Cinematic Dark Overlay with Soft Radial Lighting */}
         <div className="absolute inset-0 -z-10 bg-black/60 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black/30 via-black/60 to-black/90" />
@@ -186,7 +216,10 @@ function Home() {
       {/* 3 HIGHLIGHT CARDS (OVERLAPPING HERO) */}
       <section className="relative z-20 -mt-32 pb-20">
         <div className="container-x">
-          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+          <div 
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
+          >
             {threeCards.map((c) => (
               <div key={c.title} className="flex flex-col flex-none w-[85vw] sm:w-[45vw] lg:w-auto snap-center bg-card shadow-2xl rounded-2xl overflow-hidden border border-border/50 transition-all duration-300 lg:hover:-translate-y-2 hover:shadow-elegant">
                 <div className="flex flex-col p-8 flex-1">
