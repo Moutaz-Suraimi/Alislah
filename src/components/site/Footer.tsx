@@ -11,8 +11,7 @@ export function Footer() {
               <img
                 src="/logo.png"
                 alt="شعار المؤسسة"
-                className="h-12 w-12 object-contain rounded-full mix-blend-screen"
-                style={{ filter: "invert(1)" }}
+                className="h-12 w-12 object-contain rounded-full bg-transparent"
                 width={48}
                 height={48}
                 loading="lazy"

@@ -25,8 +25,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           <img
             src="/logo.png"
             alt="مؤسسة الإصلاح المعماري"
-            className={`h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-full ${transparent ? "mix-blend-screen" : "mix-blend-multiply"}`}
-            style={{ filter: transparent ? "invert(1)" : "none" }}
+            className="h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-full bg-transparent"
             width={56}
             height={56}
           />
