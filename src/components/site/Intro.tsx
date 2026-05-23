@@ -42,15 +42,27 @@ export function Intro() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0, 0.15, 0],
+              scale: [0.8, 1.3, 0.8],
+              opacity: [0, 0.4, 0],
             }}
             transition={{
               duration: 3.5,
               ease: "easeInOut",
             }}
-            className="absolute top-1/4 -start-20 h-96 w-96 rounded-full pointer-events-none will-change-[opacity,transform]"
-            style={{ background: 'radial-gradient(circle, oklch(0.86 0.18 95) 0%, transparent 70%)' }}
+            className="absolute top-1/4 -start-10 h-72 w-72 rounded-full bg-gold blur-3xl pointer-events-none will-change-[opacity,transform]"
+          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+              scale: [0.8, 1.3, 0.8],
+              opacity: [0, 0.3, 0],
+            }}
+            transition={{
+              duration: 3.5,
+              ease: "easeInOut",
+              delay: 0.5
+            }}
+            className="absolute bottom-1/4 -end-10 h-96 w-96 rounded-full bg-gold blur-3xl pointer-events-none will-change-[opacity,transform]"
           />
           
           {/* Skip Button */}
