@@ -7,6 +7,7 @@ const nav = [
   { to: "/about", label: "من نحن" },
   { to: "/services", label: "خدماتنا" },
   { to: "/projects", label: "مشاريعنا" },
+  { to: "/partners", label: "شركاؤنا" },
   { to: "/contact", label: "تواصل معنا" },
 ] as const;
 
@@ -23,7 +24,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
       <div className="container-x flex h-24 items-center justify-between gap-6">
         <Link to="/" className="flex items-center gap-2 sm:gap-3">
           <img
-            src="/logo.png"
+            src="/logo_transparent.png"
             alt="مؤسسة الإصلاح المعماري"
             className="h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-full bg-transparent"
             width={56}
@@ -65,10 +66,10 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               رقم مجاني
             </span>
             <a
-              href="tel:+966114034731"
+              href="tel:+966500708534"
               className={`flex items-center gap-1.5 text-base font-bold ${transparent ? "text-gold" : "text-primary"}`}
             >
-              <Phone className="h-4 w-4" /> 011-4034731
+              <Phone className="h-4 w-4" /> 0500708534
             </a>
           </div>
         </div>
@@ -93,7 +94,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             ))}
             <div className="mt-4 border-t border-border pt-4">
               <a
-                href="tel:+966114034731"
+                href="tel:+966500708534"
                 className="flex items-center justify-center gap-2 rounded-md bg-gold-gradient px-5 py-3 text-sm font-bold text-gold-foreground"
               >
                 <Phone className="h-4 w-4" /> اتصل بنا الآن

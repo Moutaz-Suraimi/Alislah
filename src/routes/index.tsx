@@ -51,55 +51,50 @@ export const Route = createFileRoute("/")({
 
 const threeCards = [
   {
-    img: "/building_card.png",
+    icon: Building2,
     title: "أعمال البناء",
-    desc: "تنفيذ وبناء العمائر، الفلل، القصور، والاستراحات بأعلى مستويات الجودة.",
+    desc: "عمائر، فلل، قصور، قصور أفراح، استراحات وشاليهات",
     linkText: "اقرأ المزيد",
   },
   {
-    img: "/service_card.png",
-    title: "المشاريع الخدمية",
-    desc: "تنفيذ الفنادق، المساجد، المدارس، ومحطات الوقود بخبرة موثوقة.",
-    linkText: "المميزات",
+    icon: Sparkles,
+    title: "المشاريع الخدمية والتجارية",
+    desc: "فنادق، مساجد، مدارس، محطات وقود، معارض وكافيهات",
+    linkText: "اقرأ المزيد",
   },
   {
-    img: "/industrial_card.png",
-    title: "المنشآت الصناعية",
-    desc: "بناء وتجهيز الهناجر، المستودعات، والورش الصناعية المتخصصة.",
-    linkText: "التفاصيل",
+    icon: Factory,
+    title: "المنشآت الصناعية والزراعية",
+    desc: "هناجر، مستودعات، ورش، حضائر دواجن وملحقاتها",
+    linkText: "اقرأ المزيد",
   },
 ];
 
 const services = [
   {
     icon: Building2,
-    title: "المقاولات العامة",
-    desc: "تنفيذ المباني السكنية والتجارية والصحية والتعليمية بأعلى المواصفات.",
+    title: "أعمال البناء",
+    subServices: ["عمائر", "فلل", "قصور", "قصور أفراح", "استراحات وشاليهات"],
+  },
+  {
+    icon: Briefcase,
+    title: "المشاريع الخدمية والتجارية",
+    subServices: ["فنادق", "مساجد", "مدارس", "محطات وقود", "معارض وكافيهات"],
   },
   {
     icon: Factory,
-    title: "الهناجر والمستودعات",
-    desc: "بناء المستودعات الصناعية والتجارية والمصانع والورش بكفاءة عالية.",
+    title: "المنشآت الصناعية والزراعية",
+    subServices: ["هناجر", "مستودعات", "ورش", "حضائر دواجن وملحقاتها"],
   },
   {
     icon: Sparkles,
-    title: "التشطيبات والديكور",
-    desc: "تشطيبات داخلية وخارجية وزخارف جبسية بلمسة معمارية متميزة.",
-  },
-  {
-    icon: Wrench,
-    title: "الأعمال الكهربائية والميكانيكية",
-    desc: "تنفيذ الأنظمة الكهربائية والميكانيكية المتكاملة وفق المعايير الدولية.",
+    title: "خدمات التشطيب والتجهيز",
+    subServices: ["أعمال التشطيب والترميم", "الكلادنج", "الردم والسفلتة", "الهدم والترحيل"],
   },
   {
     icon: HardHat,
-    title: "محطات الوقود والمصانع",
-    desc: "إنشاء محطات الوقود والمصانع والورش الصناعية المتخصصة.",
-  },
-  {
-    icon: Hammer,
-    title: "الترميم والصيانة",
-    desc: "أعمال الترميم والصيانة للمباني القائمة وإعادة التأهيل.",
+    title: "أنظمة التنفيذ",
+    subServices: ["تسليم مفتاح (بالمواد)", "عظم (بالمواد)", "عظم (بدون مواد)"],
   },
 ];
 
@@ -122,20 +117,6 @@ const values = [
   { icon: Users, title: "كوادر متخصصة", desc: "فريق هندسي وفني بخبرات متراكمة في كافة التخصصات." },
 ];
 
-const projects = [
-  { project: "سلسلة مستودعات القمة (1، 2، 3)", client: "شركة نجوم السلام", icon: Factory },
-  { project: "مشاريع مستودعات تجارية", client: "شركة الهداب للاستشارات العقارية", icon: Factory },
-  { project: "مشاريع مستودعات", client: "الهاجري للاستثمارات العقارية", icon: Factory },
-  { project: "مستودعات تجارية", client: "شركة السويح للاستثمارات العقارية", icon: Factory },
-  { project: "مشروع مستودع", client: "شركة العويضة العقارية", icon: Factory },
-  { project: "مشاريع مستودعات متخصصة", client: "شركة وفاق العالمية للتجهيزات العسكرية", icon: Shield },
-  { project: "مشروع مستودع", client: "شركة السلامة (القباع)", icon: Factory },
-  { project: "معرض سيارات", client: "شركة الجبر للسيارات", icon: Building2 },
-  { project: "مستودعات خاصة", client: "الشيخ عبدالرحمن المحطب", icon: Briefcase },
-  { project: "مستودعات خاصة", client: "الشيخ وليد الهداب", icon: Briefcase },
-  { project: "مستودعات خاصة", client: "الشيخ راشد العليان", icon: Briefcase },
-  { project: "مستودعات خاصة", client: "الشيخ ماجد عبدالله الفوزان", icon: Briefcase },
-];
 
 function Home() {
   return (
@@ -184,10 +165,17 @@ function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Link
+              to="/contact"
+              className="inline-flex items-center justify-center rounded-full bg-gold-gradient px-10 py-4 text-sm font-bold uppercase tracking-widest text-gold-foreground shadow-gold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
+            >
+              تواصل معنا
+            </Link>
+            <Link
               to="/about"
-              className="mt-12 inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-10 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:border-white/50"
+              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-10 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:border-white/50"
             >
               اكتشف المزيد
             </Link>
@@ -198,20 +186,17 @@ function Home() {
       {/* 3 HIGHLIGHT CARDS (OVERLAPPING HERO) */}
       <section className="relative z-20 -mt-32 pb-20">
         <div className="container-x">
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             {threeCards.map((c) => (
-              <div key={c.title} className="flex flex-col bg-card shadow-2xl overflow-hidden border border-border/50">
-                <div className="relative h-56 w-full overflow-hidden">
-                  <img src={c.img} alt={c.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" />
-                  <div className="absolute top-4 end-4 flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/70 bg-black/20 text-white transition-colors hover:bg-gold hover:border-gold cursor-pointer">
-                    <svg className="h-4 w-4 fill-current ms-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
+              <div key={c.title} className="flex flex-col flex-none w-[85vw] sm:w-[45vw] lg:w-auto snap-center bg-card shadow-2xl rounded-2xl overflow-hidden border border-border/50 transition-all duration-300 lg:hover:-translate-y-2 hover:shadow-elegant">
                 <div className="flex flex-col p-8 flex-1">
-                  <h3 className="font-display text-xl font-bold text-primary">{c.title}</h3>
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-gold/10 text-gold shadow-sm shrink-0">
+                    <c.icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="font-display text-2xl font-bold text-primary">{c.title}</h3>
                   <p className="mt-4 text-sm leading-7 text-muted-foreground">{c.desc}</p>
-                  <Link to="/services" className="mt-auto pt-6 text-xs font-bold uppercase tracking-widest text-gold transition-colors hover:text-primary">
-                    {c.linkText}
+                  <Link to="/services" className="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold transition-colors hover:text-primary">
+                    {c.linkText} <ArrowLeft className="h-3.5 w-3.5" />
                   </Link>
                 </div>
               </div>
@@ -220,34 +205,7 @@ function Home() {
         </div>
       </section>
 
-      {/* SERVICES SUMMARY */}
-      <section className="py-16 md:py-24 bg-neutral-50/50">
-        <div className="container-x text-center max-w-4xl mx-auto mb-16">
-          <div className="mb-3 text-xs font-bold uppercase tracking-widest text-gold">
-            خدماتنا
-          </div>
-          <h2 className="font-display text-3xl font-extrabold text-primary md:text-4xl">
-            حلول مقاولات متكاملة تحت سقف واحد
-          </h2>
-          <p className="mt-4 text-base leading-8 text-muted-foreground">
-            نقدم جميع أعمال المقاولات العامة باحترافية وجودة عالية، ونلبي كافة احتياجاتكم من أعمال البناء والمشاريع الخدمية والمنشآت الصناعية.
-          </p>
-        </div>
-        <div className="container-x grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
-            <div
-              key={s.title}
-              className="group rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-elegant text-center"
-            >
-              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gold-gradient text-gold-foreground shadow-gold transition-transform group-hover:scale-110">
-                <s.icon className="h-7 w-7" />
-              </div>
-              <h3 className="font-display text-lg font-bold text-primary">{s.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{s.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+
 
       {/* VALUES (Why Choose Us) */}
       <section className="bg-white py-20 md:py-28">
@@ -277,46 +235,6 @@ function Home() {
         </div>
       </section>
 
-      {/* OUR PROJECTS */}
-      <section className="py-20 md:py-28 bg-neutral-50/50">
-        <div className="container-x">
-          <div className="mb-14 text-center max-w-3xl mx-auto">
-            <div className="mb-3 text-xs font-bold uppercase tracking-widest text-gold">
-              أبرز عملائنا ومشاريعنا السابقة
-            </div>
-            <h2 className="font-display text-3xl font-extrabold text-primary md:text-5xl">
-              نفخر بشراكاتنا الناجحة
-            </h2>
-            <p className="mt-4 text-base leading-8 text-muted-foreground">
-              نفخر في مؤسستنا بشراكاتنا الناجحة وتنفيذنا لعدد من المشاريع المتميزة التي تخدم قطاعات متعددة، حيث تم تسليمها وفق أعلى معايير الجودة والاحترافية.
-            </p>
-          </div>
-          
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((p, idx) => (
-              <div 
-                key={idx}
-                className="group flex flex-col bg-white border border-border p-8 rounded-2xl shadow-sm hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="flex items-center justify-center rounded-full bg-gold/10 text-gold h-14 w-14 shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:bg-gold group-hover:text-gold-foreground">
-                    <p.icon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-primary">{p.project}</h3>
-                  </div>
-                </div>
-                <div className="mt-auto border-t border-border pt-4">
-                  <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-gold inline-block"></span>
-                    <span className="opacity-75">العميل:</span> <span className="font-bold text-primary">{p.client}</span>
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* TESTIMONIALS */}
       <section className="py-20 bg-white">
@@ -396,7 +314,7 @@ function Home() {
       {/* FLOATING WHATSAPP / CALL BUTTONS */}
       <div className="fixed bottom-6 end-6 z-50 flex flex-col gap-3">
         <a 
-          href="https://wa.me/966500000000" 
+          href="https://wa.me/966500708534" 
           target="_blank" 
           rel="noreferrer" 
           aria-label="تواصل عبر واتساب"
@@ -405,13 +323,6 @@ function Home() {
           <svg className="h-7 w-7 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
-        </a>
-        <a 
-          href="tel:+966114034731" 
-          aria-label="اتصل بنا"
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-gold-gradient text-gold-foreground shadow-lg shadow-gold transition-transform hover:scale-110"
-        >
-          <PhoneCall className="h-6 w-6" />
         </a>
       </div>
     </Layout>

@@ -172,16 +172,10 @@ function Quote() {
               </p>
               <div className="mt-4 space-y-2 text-sm">
                 <a
-                  href="tel:+966114034731"
+                  href="tel:+966500708534"
                   className="block font-bold text-primary hover:text-gold"
                 >
-                  📞 011-4034731
-                </a>
-                <a
-                  href="tel:+966505141577"
-                  className="block font-bold text-primary hover:text-gold"
-                >
-                  📱 0505141577
+                  📱 0500708534
                 </a>
                 <a
                   href="mailto:info@alislah-almamary.sa"

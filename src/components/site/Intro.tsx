@@ -81,7 +81,7 @@ export function Intro() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               <img
-                src="/logo.png"
+                src="/logo_transparent.png"
                 alt="شعار المؤسسة"
                 fetchPriority="high"
                 loading="eager"

@@ -31,14 +31,14 @@ const items = [
   { 
     icon: Phone, 
     title: "اتصل بنا", 
-    text: "011-4034731\n0505141577",
-    href: "tel:+966114034731"
+    text: "0500708534\nم/ أبو نايف",
+    href: "tel:+966500708534"
   },
   {
     icon: MessageCircle,
     title: "واتساب",
     text: "تواصل معنا مباشرة للحصول على الدعم الفوري",
-    href: "https://wa.me/966505141577"
+    href: "https://wa.me/966500708534"
   },
   { 
     icon: Mail, 

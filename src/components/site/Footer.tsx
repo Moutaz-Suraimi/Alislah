@@ -9,7 +9,7 @@ export function Footer() {
           <div className="flex items-center gap-3">
             <div className="rounded-full bg-transparent p-1 border border-white/20">
               <img
-                src="/logo.png"
+                src="/logo_transparent.png"
                 alt="شعار المؤسسة"
                 className="h-12 w-12 object-contain rounded-full bg-transparent"
                 width={48}
@@ -51,6 +51,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link to="/partners" className="text-primary-foreground/80 hover:text-gold">
+                شركاؤنا
+              </Link>
+            </li>
+            <li>
               <Link to="/quote" className="text-primary-foreground/80 hover:text-gold">
                 طلب عرض سعر
               </Link>
@@ -71,7 +76,7 @@ export function Footer() {
               السعودية
             </li>
             <li className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-gold" /> 011-4034731 / 0505141577
+              <Phone className="h-4 w-4 text-gold" /> 0500708534 (م/ أبو نايف)
             </li>
             <li className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-gold" /> info@alislah-almamary.sa

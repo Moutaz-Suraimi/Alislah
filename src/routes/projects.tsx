@@ -24,8 +24,6 @@ const projectsList = [
     type: "مشاريع سكنية",
     location: "الرياض، حي الملقا",
     duration: "12 شهراً",
-    imageAfter: "/building_card.png",
-    // imageBefore: "/hero.jpg", // إضافة صورة 'قبل' إذا توفرت
   },
   {
     id: 2,
@@ -33,7 +31,6 @@ const projectsList = [
     type: "منشآت صناعية",
     location: "الرياض، المدينة الصناعية الثانية",
     duration: "8 أشهر",
-    imageAfter: "/industrial_card.png",
   },
   {
     id: 3,
@@ -41,7 +38,6 @@ const projectsList = [
     type: "مشاريع خدمية وتجارية",
     location: "جدة، حي الشاطئ",
     duration: "18 شهراً",
-    imageAfter: "/service_card.png",
   },
   {
     id: 4,
@@ -49,13 +45,10 @@ const projectsList = [
     type: "مشاريع سكنية وترفيهية",
     location: "الرياض، العمارية",
     duration: "10 أشهر",
-    imageAfter: "/hero.jpg",
   }
 ];
 
 function Projects() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
   return (
     <Layout>
       {/* Hero Section */}
@@ -96,31 +89,6 @@ function Projects() {
               key={project.id}
               className="group flex flex-col overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm hover:shadow-elegant transition-all duration-300"
             >
-              {/* Project Image Area (supports Before/After mentally if added) */}
-              <div 
-                className="relative aspect-video overflow-hidden cursor-pointer" 
-                onClick={() => setSelectedImage(project.imageAfter)}
-              >
-                <img
-                  src={project.imageAfter}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                
-                {/* Badge for Before/After if configured */}
-                {project.imageBefore && (
-                  <div className="absolute top-4 start-4 bg-black/60 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-gold"></span> متوفر صور قبل/بعد
-                  </div>
-                )}
-                
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="bg-white/90 text-primary px-4 py-2 rounded-full font-bold text-sm shadow-lg">
-                    تكبير الصورة
-                  </span>
-                </div>
-              </div>
-
               {/* Project Details */}
               <div className="p-8 flex flex-col flex-grow">
                 <h3 className="font-display text-2xl font-bold text-primary mb-6">
@@ -158,18 +126,6 @@ function Projects() {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
-      <Dialog open={!!selectedImage} onOpenChange={(open) => !open && setSelectedImage(null)}>
-        <DialogContent className="max-w-[95vw] md:max-w-6xl p-1 bg-transparent border-none shadow-none flex justify-center items-center">
-          {selectedImage && (
-            <img
-              src={selectedImage}
-              alt="عرض تفصيلي للمشروع"
-              className="w-full h-auto max-h-[90vh] object-contain rounded-xl shadow-2xl"
-            />
-          )}
-        </DialogContent>
-      </Dialog>
     </Layout>
   );
 }

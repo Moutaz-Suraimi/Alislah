@@ -21,28 +21,29 @@ export const Route = createFileRoute("/services")({
 const servicesList = [
   {
     title: "أعمال البناء",
-    desc: "تنفيذ متكامل لجميع المشاريع السكنية والتجارية (عمائر، فلل، قصور، استراحات، ومشاريع خدمية) وفق أحدث المعايير الهندسية وأعلى مستويات الجودة.",
-    img: "/building_card.png",
-    features: ["تخطيط وتصميم", "تسليم مفتاح", "هيكل عظم (مواد/بدون)"]
+    desc: "تنفيذ وبناء المشاريع السكنية بجودة عالية والتزام تام بالمواعيد.",
+    features: ["عمائر", "فلل", "قصور", "قصور أفراح", "استراحات وشاليهات"]
   },
   {
-    title: "التشطيبات والترميم",
-    desc: "حلول تشطيب متكاملة وعالية الفخامة للواجهات والديكورات الداخلية، بالإضافة إلى أعمال الترميم للمباني القائمة وإعادة تأهيلها.",
-    img: "/service_card.png",
-    features: ["ديكورات جبسية", "واجهات كلادنج", "أعمال كهربائية وميكانيكية"]
+    title: "المشاريع الخدمية والتجارية",
+    desc: "نلبي احتياجات قطاع الأعمال والمرافق العامة بأعلى معايير الجودة.",
+    features: ["فنادق", "مساجد", "مدارس", "محطات وقود", "معارض وكافيهات"]
   },
   {
-    title: "بناء الهناجر والمستودعات",
-    desc: "تصميم وتنفيذ المنشآت الصناعية، الهناجر، المستودعات، الورش، وحضائر الدواجن بمواصفات عالية لضمان السلامة والتحمل.",
-    img: "/industrial_card.png",
-    features: ["مستودعات تجارية", "هناجر صناعية", "تجهيزات المصانع"]
+    title: "المنشآت الصناعية والزراعية",
+    desc: "بناء وتجهيز المنشآت بمواصفات عالية لضمان السلامة والتحمل.",
+    features: ["هناجر", "مستودعات", "ورش", "حضائر دواجن وملحقاتها"]
   },
   {
-    title: "الصيانة العامة",
-    desc: "خدمات صيانة شاملة ودورية للمباني والمجمعات والمرافق الخدمية لضمان استدامتها وعملها بكفاءة عالية على مدار الساعة.",
-    img: "/hero.jpg",
-    features: ["صيانة وقائية", "حلول سريعة", "فريق طوارئ مختص"]
+    title: "خدمات التنفيذ",
+    desc: "حلول متكاملة لتجهيز المواقع والتشطيبات الفاخرة للواجهات والديكورات.",
+    features: ["أعمال التشطيب والترميم", "الكلادنج", "الردم والسفلتة", "الهدم والترحيل"]
   },
+  {
+    title: "أنظمة التنفيذ",
+    desc: "نقدم مرونة عالية في أنظمة التعاقد لتناسب ميزانيتك ومتطلبات مشروعك.",
+    features: ["تسليم مفتاح (بالمواد)", "عظم (بالمواد)", "عظم (بدون مواد)"]
+  }
 ];
 
 function Services() {
@@ -55,20 +56,12 @@ function Services() {
       />
 
       <section className="container-x py-20 bg-neutral-50/50">
-        <div className="grid gap-10 md:grid-cols-2">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {servicesList.map((service, idx) => (
             <div
               key={idx}
               className="group flex flex-col bg-card rounded-[2rem] overflow-hidden border border-border shadow-sm hover:shadow-elegant transition-all duration-300"
             >
-              <div className="aspect-video overflow-hidden relative">
-                <img 
-                  src={service.img} 
-                  alt={service.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
               
               <div className="p-8 flex flex-col flex-grow">
                 <h3 className="font-display text-2xl font-bold text-primary mb-4">{service.title}</h3>
