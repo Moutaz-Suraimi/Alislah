@@ -38,32 +38,7 @@ export function Intro() {
           {/* Subtle light background gradient */}
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-50 via-white to-white" />
 
-          {/* Animated Gold Pulses in Background */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{
-              scale: [0.8, 1.3, 0.8],
-              opacity: [0, 0.4, 0],
-            }}
-            transition={{
-              duration: 3.5,
-              ease: "easeInOut",
-            }}
-            className="absolute top-1/4 -start-10 h-72 w-72 rounded-full bg-gold blur-3xl pointer-events-none"
-          />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{
-              scale: [0.8, 1.3, 0.8],
-              opacity: [0, 0.3, 0],
-            }}
-            transition={{
-              duration: 3.5,
-              ease: "easeInOut",
-              delay: 0.5
-            }}
-            className="absolute bottom-1/4 -end-10 h-96 w-96 rounded-full bg-gold blur-3xl pointer-events-none"
-          />
+
           
           {/* Skip Button */}
           <button
