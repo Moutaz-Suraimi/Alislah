@@ -87,7 +87,11 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-3 text-sm font-semibold hover:bg-accent"
+                className="rounded-md px-3 py-3 text-sm font-semibold transition-colors hover:bg-accent text-primary"
+                activeProps={{
+                  className: "bg-gold/10 text-gold font-bold"
+                }}
+                activeOptions={{ exact: n.to === "/" }}
               >
                 {n.label}
               </Link>

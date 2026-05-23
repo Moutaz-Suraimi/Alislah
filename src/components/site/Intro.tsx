@@ -9,10 +9,11 @@ export function Intro() {
     setMounted(true);
     if (!sessionStorage.getItem("intro_seen")) {
       setIsVisible(true);
+      // Reduced from 3500 to 1800 to fix lag and block time
       const timer = setTimeout(() => {
         setIsVisible(false);
         sessionStorage.setItem("intro_seen", "true");
-      }, 3500);
+      }, 1800);
       return () => clearTimeout(timer);
     }
   }, []);
@@ -31,15 +32,10 @@ export function Intro() {
           key="intro-screen"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white text-primary overflow-hidden"
         >
-          {/* Subtle light background gradient */}
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-50 via-white to-white" />
-
-
-          
           {/* Skip Button */}
           <button
             onClick={closeIntro}
@@ -51,9 +47,9 @@ export function Intro() {
           <div className="container-x max-w-3xl text-center flex flex-col items-center relative z-10 -mt-10">
             {/* Logo Animation */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
               <img
                 src="/logo_transparent.png"
@@ -66,32 +62,13 @@ export function Intro() {
 
             {/* Company Name */}
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="font-display text-3xl md:text-5xl font-extrabold text-primary tracking-tight"
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              className="font-display text-2xl md:text-5xl font-extrabold text-primary tracking-tight"
             >
-              مؤسسة الإصلاح المعماري للمقاولات
+              مؤسسة الإصلاح المعماري
             </motion.h1>
-
-            {/* Divider Line */}
-            <motion.div
-              initial={{ scaleX: 0, opacity: 0 }}
-              animate={{ scaleX: 1, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeInOut" }}
-              className="mt-6 mb-8 h-px w-24 bg-gradient-to-r from-transparent via-gold to-transparent origin-center"
-            />
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-              className="text-base md:text-xl leading-relaxed md:leading-loose text-muted-foreground font-medium px-4"
-            >
-              منشأة سعودية وطنية مقرها الرياض، متخصصة في تنفيذ مشاريع المباني والأعمال الإنشائية
-              والديكورات الداخلية والخارجية، وفق أعلى المواصفات الفنية.
-            </motion.p>
           </div>
         </motion.div>
       )}

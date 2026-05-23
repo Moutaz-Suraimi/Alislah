@@ -142,7 +142,7 @@ function Home() {
             container.scrollTo({ left: 0, behavior: "smooth" });
           }
         }
-      }, 2000); // Move every 2 seconds (medium speed)
+      }, 3000); // Move every 3 seconds
     };
 
     // Delay the auto-scroll start slightly to allow rendering
@@ -195,20 +195,27 @@ function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 1 }}
-            className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="mt-12 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4"
           >
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center rounded-full bg-gold-gradient px-10 py-4 text-sm font-bold uppercase tracking-widest text-gold-foreground shadow-gold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
+              className="inline-flex items-center justify-center rounded-full bg-gold-gradient px-8 md:px-10 py-3 md:py-4 text-sm font-bold uppercase tracking-widest text-gold-foreground shadow-gold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
             >
               تواصل معنا
             </Link>
             <Link
               to="/about"
-              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-10 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:border-white/50"
+              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-8 md:px-10 py-3 md:py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:border-white/50"
             >
               اكتشف المزيد
             </Link>
+            <a
+              href="/الإصلاح المعماري.pdf"
+              download
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-gold/40 bg-gold/10 backdrop-blur-md px-8 md:px-10 py-3 md:py-4 text-sm font-bold uppercase tracking-widest text-gold transition-all duration-300 hover:bg-gold hover:text-black hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]"
+            >
+              <Briefcase className="w-4 h-4" /> تحميل البروفايل
+            </a>
           </motion.div>
         </div>
       </section>
