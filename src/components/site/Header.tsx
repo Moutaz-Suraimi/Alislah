@@ -25,13 +25,16 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           <img
             src="/logo.png"
             alt="مؤسسة الإصلاح المعماري"
-            className="h-10 w-10 sm:h-14 sm:w-14 object-contain"
+            className="h-10 w-10 sm:h-14 sm:w-14 object-contain rounded-full bg-transparent"
             width={56}
             height={56}
           />
-          <div className="leading-tight">
-            <div className="font-display text-sm sm:text-lg font-extrabold tracking-wide uppercase">
-              الإصلاح المعماري
+          <div className="leading-tight flex flex-col">
+            <div className="font-display text-sm sm:text-lg font-extrabold tracking-wide">
+              مؤسسة الإصلاح المعماري
+            </div>
+            <div className={`text-[9px] sm:text-[11px] font-medium tracking-widest uppercase mt-0.5 ${transparent ? "text-white/80" : "text-muted-foreground"}`}>
+              Alislah Architectural Est.
             </div>
           </div>
         </Link>

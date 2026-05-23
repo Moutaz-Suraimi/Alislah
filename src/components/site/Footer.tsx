@@ -7,22 +7,22 @@ export function Footer() {
       <div className="container-x grid gap-10 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3">
-            <div className="rounded-lg bg-white/95 p-2">
+            <div className="rounded-full bg-transparent p-1 border border-white/20">
               <img
                 src="/logo.png"
                 alt="شعار المؤسسة"
-                className="h-10 w-10 object-contain"
-                width={40}
-                height={40}
+                className="h-12 w-12 object-contain rounded-full bg-transparent"
+                width={48}
+                height={48}
                 loading="lazy"
               />
             </div>
             <div>
               <div className="font-display text-lg font-extrabold">
-                مؤسسة الإصلاح المعماري للمقاولات
+                مؤسسة الإصلاح المعماري
               </div>
-              <div className="text-sm text-primary-foreground/70">
-                Alislah Almamary Contracting Est.
+              <div className="text-[11px] font-medium tracking-widest text-primary-foreground/70 uppercase mt-0.5">
+                Alislah Architectural Est.
               </div>
             </div>
           </div>
