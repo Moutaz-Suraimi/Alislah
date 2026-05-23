@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { Layout } from "@/components/site/Layout";
 import {
   Building2,
@@ -140,30 +141,57 @@ function Home() {
   return (
     <Layout transparentHeader>
       {/* HERO */}
-      <section className="relative flex flex-col items-center justify-center pt-40 pb-56 text-center text-primary-foreground min-h-[95vh]">
-        <img
-          src="/hero.jpg"
-          alt="موقع إنشائي"
-          fetchPriority="high"
-          loading="eager"
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
-        />
-        {/* Dark overlay for better text contrast */}
-        <div className="absolute inset-0 -z-10 bg-black/60" />
+      <section className="relative flex flex-col items-center justify-center pt-40 pb-56 text-center min-h-[95vh] overflow-hidden">
+        {/* Parallax Background */}
+        <motion.div
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 10, ease: "easeOut" }}
+          className="absolute inset-0 -z-20 h-full w-full"
+        >
+          <img
+            src="/hero.jpg"
+            alt="موقع إنشائي"
+            fetchPriority="high"
+            loading="eager"
+            className="h-full w-full object-cover object-center"
+          />
+        </motion.div>
         
-        <div className="container-x relative z-10 animate-fade-up">
-          <h1 className="font-display text-5xl md:text-7xl font-extrabold tracking-widest text-white uppercase">
-            مرحباً بكم
-          </h1>
-          <p className="mt-6 text-lg md:text-2xl font-bold tracking-widest text-white/90 uppercase">
-            نبني مستقبلاً مشرقاً، معاً
-          </p>
-          <Link
-            to="/about"
-            className="mt-12 inline-flex items-center justify-center bg-gold px-10 py-4 text-sm font-bold uppercase text-gold-foreground transition-colors hover:bg-gold/90"
+        {/* Cinematic Dark Overlay with Soft Radial Lighting */}
+        <div className="absolute inset-0 -z-10 bg-black/60 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black/30 via-black/60 to-black/90" />
+        
+        <div className="container-x relative z-10 flex flex-col items-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+            className="font-display text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           >
-            من نحن &raquo;
-          </Link>
+            نبني الجمال… ونصمم المستقبل
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
+            className="mt-6 text-lg md:text-2xl font-medium text-white/80 max-w-2xl leading-relaxed drop-shadow-md"
+          >
+            خبرة معمارية تجمع بين الإبداع والدقة في كل مشروع.
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+          >
+            <Link
+              to="/about"
+              className="mt-12 inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-10 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(212,175,55,0.3)] hover:border-white/50"
+            >
+              اكتشف المزيد
+            </Link>
+          </motion.div>
         </div>
       </section>
 
