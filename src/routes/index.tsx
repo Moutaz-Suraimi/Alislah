@@ -204,13 +204,13 @@ function Home() {
       </section>
 
       {/* VALUES (Why Choose Us) */}
-      <section className="bg-primary py-20 text-primary-foreground md:py-28">
+      <section className="bg-white py-20 md:py-28">
         <div className="container-x">
           <div className="mb-14 text-center">
             <div className="mb-3 text-xs font-bold uppercase tracking-widest text-gold">
               لماذا نحن
             </div>
-            <h2 className="font-display text-3xl font-extrabold md:text-5xl">
+            <h2 className="font-display text-3xl font-extrabold text-primary md:text-5xl">
               قيمنا التي بنينا عليها سمعتنا
             </h2>
           </div>
@@ -218,13 +218,13 @@ function Home() {
             {values.map((v) => (
               <div
                 key={v.title}
-                className="flex flex-col items-center rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur"
+                className="flex flex-col items-center rounded-2xl border border-border bg-card p-8 shadow-sm transition-shadow hover:shadow-elegant"
               >
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-white/10">
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gold/10">
                    <v.icon className="h-8 w-8 text-gold" />
                 </div>
-                <h3 className="font-display text-lg font-bold">{v.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-primary-foreground/75">{v.desc}</p>
+                <h3 className="font-display text-lg font-bold text-primary">{v.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">{v.desc}</p>
               </div>
             ))}
           </div>
