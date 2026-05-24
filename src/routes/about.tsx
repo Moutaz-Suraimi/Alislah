@@ -105,7 +105,7 @@ function About() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
-              { value: "+60", label: "مليون ريال", sub: "إجمالي قيمة المشاريع" },
+              { value: "+60", label: "مليون ريال", sub: " اجمالي قيمة المعدات" },
               { value: "56+", label: "عضو فريق", sub: "كوادر متخصصة" },
               { value: "92M", label: "حجم المشاريع", sub: "ريال سعودي" },
             ].map((stat, idx) => (

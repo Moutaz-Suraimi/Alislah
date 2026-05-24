@@ -146,9 +146,13 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           </div>
         </div>
 
-        {/* Mobile Menu Button — always white for visibility */}
+        {/* Mobile Menu Button — adapts to header background */}
         <button
-          className="lg:hidden p-2 rounded-lg transition-colors text-white hover:bg-white/10"
+          className={`lg:hidden p-2 rounded-lg transition-colors duration-300 ${
+            scrolled || transparent
+              ? "text-white hover:bg-white/10"
+              : "text-primary hover:bg-primary/10"
+          }`}
           onClick={() => setOpen(!open)}
           aria-label="القائمة"
         >
