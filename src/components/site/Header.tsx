@@ -33,19 +33,25 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isDark = scrolled || transparent;
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ease-out ${
-        scrolled
-          ? "bg-black/60 backdrop-blur-lg border-b border-white/10 shadow-lg py-0"
-          : (transparent
-              ? "bg-transparent border-b border-white/15 py-1"
-              : "bg-background/85 backdrop-blur-md border-b border-border/60 py-1")
+        open
+          ? (isDark
+              ? "bg-black/95 backdrop-blur-xl border-b border-white/10 shadow-lg py-0"
+              : "bg-background/95 backdrop-blur-xl border-b border-border/60 shadow-lg py-0")
+          : (scrolled
+              ? "bg-black/60 backdrop-blur-lg border-b border-white/10 shadow-lg py-0"
+              : (transparent
+                  ? "bg-transparent border-b border-white/15 py-1"
+                  : "bg-background/85 backdrop-blur-md border-b border-border/60 py-1"))
       }`}
     >
       <div
         className={`container-x flex items-center justify-between gap-6 transition-all duration-500 ease-out ${
-          scrolled ? "h-16 sm:h-20" : "h-20 sm:h-24"
+          scrolled || open ? "h-16 sm:h-20" : "h-20 sm:h-24"
         }`}
       >
         {/* Brand Logo & Name */}
@@ -62,14 +68,14 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           <div className="leading-tight flex flex-col">
             <div
               className={`font-display text-sm sm:text-lg font-extrabold tracking-wide transition-colors duration-500 ${
-                scrolled || transparent ? "text-white" : "text-primary"
+                isDark ? "text-white" : "text-primary"
               }`}
             >
               مؤسسة الإصلاح المعماري
             </div>
             <div
               className={`text-[9px] sm:text-[11px] font-medium tracking-widest uppercase mt-0.5 transition-colors duration-500 ${
-                scrolled || transparent ? "text-white/80" : "text-muted-foreground"
+                isDark ? "text-white/80" : "text-muted-foreground"
               }`}
             >
               Alislah Architectural Est.
@@ -95,7 +101,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                     <motion.div
                       layoutId="navbarHoverPill"
                       className={`absolute inset-0 rounded-full -z-10 ${
-                        scrolled || transparent ? "bg-white/10" : "bg-gold/10"
+                        isDark ? "bg-white/10" : "bg-gold/10"
                       }`}
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
@@ -114,7 +120,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                     className={`relative z-10 transition-colors duration-300 ${
                       isActive
                         ? "text-gold font-bold"
-                        : (scrolled || transparent ? "text-white/80 hover:text-white" : "text-primary/80 hover:text-gold")
+                        : (isDark ? "text-white/80 hover:text-white" : "text-primary/80 hover:text-gold")
                     }`}
                   >
                     {n.label}
@@ -130,7 +136,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           <div className="flex flex-col items-end">
             <span
               className={`text-[10px] font-bold uppercase tracking-widest transition-colors duration-500 ${
-                scrolled || transparent ? "text-white/70" : "text-muted-foreground"
+                isDark ? "text-white/70" : "text-muted-foreground"
               }`}
             >
               رقم مجاني
@@ -138,7 +144,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             <a
               href="tel:+966500708534"
               className={`flex items-center gap-1.5 text-base font-bold transition-all duration-500 hover:scale-103 ${
-                scrolled || transparent ? "text-gold" : "text-primary"
+                isDark ? "text-gold" : "text-primary"
               }`}
             >
               <Phone className="h-4 w-4" /> 0500708534
@@ -149,7 +155,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
         {/* Mobile Menu Button — adapts to header background */}
         <button
           className={`lg:hidden p-2 rounded-lg transition-colors duration-300 ${
-            scrolled || transparent
+            isDark
               ? "text-white hover:bg-white/10"
               : "text-primary hover:bg-primary/10"
           }`}
@@ -160,7 +166,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
         </button>
       </div>
 
-      {/* Smooth Mobile Menu Overlay — always dark for readability */}
+      {/* Smooth Mobile Menu Overlay — adapts to page colors */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -168,7 +174,11 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="border-t border-white/10 bg-black/95 backdrop-blur-xl lg:hidden shadow-2xl relative z-40"
+            className={`border-t lg:hidden shadow-2xl relative z-40 ${
+              isDark
+                ? "border-white/10 bg-black/95 backdrop-blur-xl"
+                : "border-border/60 bg-background/95 backdrop-blur-xl"
+            }`}
           >
             <div className="container-x flex flex-col gap-1.5 py-6">
               {nav.map((n) => (
@@ -176,16 +186,24 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                   key={n.to}
                   to={n.to}
                   onClick={() => setOpen(false)}
-                  className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 hover:bg-white/10 hover:text-white transition-all duration-300"
+                  className={`rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-300 ${
+                    isDark
+                      ? "text-white/80 hover:bg-white/10 hover:text-white"
+                      : "text-primary/80 hover:bg-primary/10 hover:text-primary"
+                  }`}
                   activeProps={{
-                    className: "bg-gold/15 text-gold font-bold"
+                    className: isDark
+                      ? "bg-gold/15 text-gold font-bold"
+                      : "bg-gold/20 text-amber-700 font-bold"
                   }}
                   activeOptions={{ exact: n.to === "/" }}
                 >
                   {n.label}
                 </Link>
               ))}
-              <div className="mt-4 border-t border-white/10 pt-5">
+              <div className={`mt-4 border-t pt-5 ${
+                isDark ? "border-white/10" : "border-border/60"
+              }`}>
                 <a
                   href="tel:+966500708534"
                   className="flex items-center justify-center gap-2 rounded-xl bg-gold-gradient px-5 py-3.5 text-sm font-bold text-gold-foreground shadow-gold transition-all duration-300"
