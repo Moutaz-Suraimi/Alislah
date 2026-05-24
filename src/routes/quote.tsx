@@ -163,7 +163,7 @@ function Quote() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-border bg-card p-8">
+            <div className="rounded-2xl border border-border bg-card p-8 transition-all duration-350 hover-shadow-gold hover:-translate-y-1">
               <h3 className="font-display text-lg font-bold text-primary">
                 تفضّل التواصل المباشر؟
               </h3>

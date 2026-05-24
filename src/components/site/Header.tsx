@@ -39,14 +39,10 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ease-out ${
         open
-          ? (isDark
-              ? "bg-black/95 backdrop-blur-xl border-b border-white/10 shadow-lg py-0"
-              : "bg-background/95 backdrop-blur-xl border-b border-border/60 shadow-lg py-0")
-          : (scrolled
-              ? "bg-black/60 backdrop-blur-lg border-b border-white/10 shadow-lg py-0"
-              : (transparent
-                  ? "bg-transparent border-b border-white/15 py-1"
-                  : "bg-background/85 backdrop-blur-md border-b border-border/60 py-1"))
+          ? "bg-black/95 backdrop-blur-xl border-b border-white/10 shadow-lg py-0"
+          : (transparent && !scrolled
+              ? "bg-transparent border-b border-white/15 py-1"
+              : "bg-black/80 backdrop-blur-lg border-b border-white/10 shadow-lg py-0")
       }`}
     >
       <div
@@ -66,18 +62,10 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             />
           </div>
           <div className="leading-tight flex flex-col">
-            <div
-              className={`font-display text-sm sm:text-lg font-extrabold tracking-wide transition-colors duration-500 ${
-                isDark ? "text-white" : "text-primary"
-              }`}
-            >
+            <div className="font-display text-sm sm:text-lg font-extrabold tracking-wide text-white transition-colors duration-500">
               مؤسسة الإصلاح المعماري
             </div>
-            <div
-              className={`text-[9px] sm:text-[11px] font-medium tracking-widest uppercase mt-0.5 transition-colors duration-500 ${
-                isDark ? "text-white/80" : "text-muted-foreground"
-              }`}
-            >
+            <div className="text-[9px] sm:text-[11px] font-medium tracking-widest uppercase mt-0.5 text-white/80 transition-colors duration-500">
               Alislah Architectural Est.
             </div>
           </div>
@@ -100,9 +88,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                   {hoveredIndex === idx && (
                     <motion.div
                       layoutId="navbarHoverPill"
-                      className={`absolute inset-0 rounded-full -z-10 ${
-                        isDark ? "bg-white/10" : "bg-gold/10"
-                      }`}
+                      className="absolute inset-0 rounded-full -z-10 bg-white/10"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -120,7 +106,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                     className={`relative z-10 transition-colors duration-300 ${
                       isActive
                         ? "text-gold font-bold"
-                        : (isDark ? "text-white/80 hover:text-white" : "text-primary/80 hover:text-gold")
+                        : "text-white/80 hover:text-white"
                     }`}
                   >
                     {n.label}
@@ -134,31 +120,21 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
         {/* Free Call Section (Desktop) */}
         <div className="hidden items-center gap-4 lg:flex">
           <div className="flex flex-col items-end">
-            <span
-              className={`text-[10px] font-bold uppercase tracking-widest transition-colors duration-500 ${
-                isDark ? "text-white/70" : "text-muted-foreground"
-              }`}
-            >
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white/70 transition-colors duration-500">
               رقم مجاني
             </span>
             <a
               href="tel:+966500708534"
-              className={`flex items-center gap-1.5 text-base font-bold transition-all duration-500 hover:scale-103 ${
-                isDark ? "text-gold" : "text-primary"
-              }`}
+              className="flex items-center gap-1.5 text-base font-bold text-gold transition-all duration-500 hover:scale-103"
             >
               <Phone className="h-4 w-4" /> 0500708534
             </a>
           </div>
         </div>
 
-        {/* Mobile Menu Button — adapts to header background */}
+        {/* Mobile Menu Button — always white for dark-themed header */}
         <button
-          className={`lg:hidden p-2 rounded-lg transition-colors duration-300 ${
-            isDark
-              ? "text-white hover:bg-white/10"
-              : "text-primary hover:bg-primary/10"
-          }`}
+          className="lg:hidden p-2 rounded-lg transition-colors duration-300 text-white hover:bg-white/10"
           onClick={() => setOpen(!open)}
           aria-label="القائمة"
         >
@@ -166,7 +142,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
         </button>
       </div>
 
-      {/* Smooth Mobile Menu Overlay — adapts to page colors */}
+      {/* Smooth Mobile Menu Overlay — always dark for consistent premium look */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -174,11 +150,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className={`border-t lg:hidden shadow-2xl relative z-40 ${
-              isDark
-                ? "border-white/10 bg-black/95 backdrop-blur-xl"
-                : "border-border/60 bg-background/95 backdrop-blur-xl"
-            }`}
+            className="border-t border-white/10 bg-black/95 backdrop-blur-xl lg:hidden shadow-2xl relative z-40"
           >
             <div className="container-x flex flex-col gap-1.5 py-6">
               {nav.map((n) => (
@@ -186,24 +158,16 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                   key={n.to}
                   to={n.to}
                   onClick={() => setOpen(false)}
-                  className={`rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-300 ${
-                    isDark
-                      ? "text-white/80 hover:bg-white/10 hover:text-white"
-                      : "text-primary/80 hover:bg-primary/10 hover:text-primary"
-                  }`}
+                  className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 hover:bg-white/10 hover:text-white transition-all duration-300"
                   activeProps={{
-                    className: isDark
-                      ? "bg-gold/15 text-gold font-bold"
-                      : "bg-gold/20 text-amber-700 font-bold"
+                    className: "bg-gold/15 text-gold font-bold"
                   }}
                   activeOptions={{ exact: n.to === "/" }}
                 >
                   {n.label}
                 </Link>
               ))}
-              <div className={`mt-4 border-t pt-5 ${
-                isDark ? "border-white/10" : "border-border/60"
-              }`}>
+              <div className="mt-4 border-t border-white/10 pt-5">
                 <a
                   href="tel:+966500708534"
                   className="flex items-center justify-center gap-2 rounded-xl bg-gold-gradient px-5 py-3.5 text-sm font-bold text-gold-foreground shadow-gold transition-all duration-300"

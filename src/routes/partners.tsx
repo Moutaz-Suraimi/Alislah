@@ -79,7 +79,7 @@ function Partners() {
             {partners.map((p, idx) => (
               <div 
                 key={idx}
-                className="group flex flex-col bg-white border border-border p-8 rounded-2xl shadow-sm hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
+                className="group flex flex-col bg-white border border-border p-8 rounded-2xl shadow-sm transition-all duration-350 hover-shadow-gold hover:-translate-y-1"
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="flex items-center justify-center rounded-full bg-gold/10 text-gold h-14 w-14 shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:bg-gold group-hover:text-gold-foreground">

@@ -65,9 +65,9 @@ function Contact() {
               href={i.href}
               target={i.href.startsWith("http") ? "_blank" : undefined}
               rel={i.href.startsWith("http") ? "noreferrer" : undefined}
-              className="rounded-2xl border border-border bg-card p-7 text-center transition-all duration-300 hover:-translate-y-2 hover:border-gold/40 hover:shadow-elegant group"
+              className="rounded-2xl border border-border bg-card p-7 text-center transition-all duration-350 hover:-translate-y-2 hover-shadow-gold group"
             >
-              <div className="mx-auto mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-neutral-100 text-primary transition-colors group-hover:bg-gold-gradient group-hover:text-white group-hover:shadow-gold">
+              <div className="mx-auto mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-neutral-100 text-primary transition-all duration-350 group-hover:scale-110 group-hover:bg-gold-gradient group-hover:text-gold-foreground group-hover:shadow-gold">
                 <i.icon className="h-7 w-7" />
               </div>
               <h3 className="font-display text-xl font-bold text-primary">{i.title}</h3>

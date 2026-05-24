@@ -316,7 +316,7 @@ function Home() {
             className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
           >
             {threeCards.map((c) => (
-              <div key={c.title} className="flex flex-col flex-none w-[85vw] sm:w-[45vw] lg:w-auto snap-center bg-card shadow-2xl rounded-2xl overflow-hidden border border-border/50 transition-all duration-300 lg:hover:-translate-y-2 hover:shadow-elegant">
+              <div key={c.title} className="flex flex-col flex-none w-[85vw] sm:w-[45vw] lg:w-auto snap-center bg-card shadow-2xl rounded-2xl overflow-hidden border border-border/50 transition-all duration-350 lg:hover:-translate-y-2 hover-shadow-gold">
                 <div className="flex flex-col p-8 flex-1">
                   <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-gold/10 text-gold shadow-sm shrink-0">
                     <c.icon className="h-7 w-7" />
@@ -350,7 +350,7 @@ function Home() {
             {values.map((v) => (
               <div
                 key={v.title}
-                className="flex flex-col items-center rounded-2xl border border-border bg-card p-8 shadow-sm transition-shadow hover:shadow-elegant"
+                className="flex flex-col items-center rounded-2xl border border-border bg-card p-8 shadow-sm transition-all duration-350 hover-shadow-gold hover:-translate-y-1"
               >
                 <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gold/10">
                    <v.icon className="h-8 w-8 text-gold" />
@@ -397,7 +397,7 @@ function Home() {
                 quote: "تعامل راقٍ وشفافية مطلقة في الأسعار والمواد المستخدمة. تم الانتهاء من أعمال الترميم والصيانة قبل الموعد المحدد وبجودة استثنائية.",
               }
             ].map((testimonial, idx) => (
-              <div key={idx} className="flex flex-col bg-card border border-border p-8 rounded-2xl shadow-sm hover:shadow-elegant transition-shadow">
+              <div key={idx} className="flex flex-col bg-card border border-border p-8 rounded-2xl shadow-sm transition-all duration-350 hover-shadow-gold hover:-translate-y-1">
                 <div className="flex text-gold mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">

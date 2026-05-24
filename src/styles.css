@@ -131,6 +131,10 @@
   .shadow-gold {
     box-shadow: var(--shadow-gold);
   }
+  .hover-shadow-gold:hover {
+    box-shadow: var(--shadow-gold) !important;
+    border-color: var(--color-gold) !important;
+  }
   .container-x {
     max-width: 1280px;
     margin-inline: auto;

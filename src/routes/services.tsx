@@ -60,7 +60,7 @@ function Services() {
           {servicesList.map((service, idx) => (
             <div
               key={idx}
-              className="group flex flex-col bg-card rounded-[2rem] overflow-hidden border border-border shadow-sm hover:shadow-elegant transition-all duration-300"
+              className="group flex flex-col bg-card rounded-[2rem] overflow-hidden border border-border shadow-sm transition-all duration-350 hover-shadow-gold hover:-translate-y-1"
             >
               
               <div className="p-8 flex flex-col flex-grow">

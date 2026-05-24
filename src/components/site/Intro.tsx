@@ -36,6 +36,26 @@ export function Intro() {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white text-primary overflow-hidden"
         >
+          {/* Subtle gold animated background pulses */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
+            <style dangerouslySetInnerHTML={{__html: `
+              @keyframes introPulse {
+                0%, 100% { opacity: 0.35; transform: scale(1); }
+                50%      { opacity: 0.75; transform: scale(1.18); }
+              }
+              .intro-glow-1 {
+                animation: introPulse 4.5s ease-in-out infinite;
+                will-change: transform, opacity;
+              }
+              .intro-glow-2 {
+                animation: introPulse 5.5s ease-in-out infinite 1.8s;
+                will-change: transform, opacity;
+              }
+            `}} />
+            <div className="intro-glow-1 absolute -top-24 -start-24 w-80 h-80 rounded-full bg-gold/15 blur-[85px]" />
+            <div className="intro-glow-2 absolute -bottom-24 -end-24 w-96 h-96 rounded-full bg-gold/20 blur-[105px]" />
+          </div>
+
           {/* Skip Button */}
           <button
             onClick={closeIntro}
