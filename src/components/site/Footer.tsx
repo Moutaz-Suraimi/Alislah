@@ -90,7 +90,7 @@ export function Footer() {
           <div className="flex gap-4 items-center">
             <p>الرياض، المملكة العربية السعودية</p>
             <span className="h-3 w-px bg-white/20"></span>
-            <p>تم التصميم والتطوير بواسطة Suriix</p>
+            <p>تم التصميم والتطوير بواسطة <Link href="https://suriix.com/">Suriix</Link> </p>
           </div>
         </div>
       </div>

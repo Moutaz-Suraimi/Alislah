@@ -179,16 +179,18 @@ function Home() {
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
             className="font-display text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           >
-            نبني الجمال… ونصمم المستقبل
+            مؤسسة الإصلاح المعماري للمقاولات
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
-            className="mt-6 text-lg md:text-2xl font-medium text-white/80 max-w-2xl leading-relaxed drop-shadow-md"
+            className="mt-6 text-lg md:text-2xl font-medium text-white/80 max-w-3xl leading-relaxed drop-shadow-md"
           >
-            خبرة معمارية تجمع بين الإبداع والدقة في كل مشروع.
+            نحوّل رؤيتك إلى واقع ملموس
+            <br />
+            بقيادة محمد بن قرشي شراحيلي، نُبدع في تنفيذ المشاريع بأعلى معايير الجودة والاحتراف.
           </motion.p>
           
           <motion.div

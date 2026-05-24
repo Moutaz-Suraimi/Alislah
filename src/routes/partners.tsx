@@ -15,19 +15,20 @@ export const Route = createFileRoute("/partners")({
   component: Partners,
 });
 
-const projects = [
-  { project: "سلسلة مستودعات القمة (1، 2، 3)", client: "شركة نجوم السلام", icon: Factory },
-  { project: "مشاريع مستودعات تجارية", client: "شركة الهداب للاستشارات العقارية", icon: Factory },
-  { project: "مشاريع مستودعات", client: "الهاجري للاستثمارات العقارية", icon: Factory },
-  { project: "مستودعات تجارية", client: "شركة السويح للاستثمارات العقارية", icon: Factory },
-  { project: "مشروع مستودع", client: "شركة العويضة العقارية", icon: Factory },
-  { project: "مشاريع مستودعات متخصصة", client: "شركة وفاق العالمية للتجهيزات العسكرية", icon: Shield },
-  { project: "مشروع مستودع", client: "شركة السلامة (القباع)", icon: Factory },
-  { project: "معرض سيارات", client: "شركة الجبر للسيارات", icon: Building2 },
-  { project: "مستودعات خاصة", client: "الشيخ عبدالرحمن المحطب", icon: Briefcase },
-  { project: "مستودعات خاصة", client: "الشيخ وليد الهداب", icon: Briefcase },
-  { project: "مستودعات خاصة", client: "الشيخ راشد العليان", icon: Briefcase },
-  { project: "مستودعات خاصة", client: "الشيخ ماجد عبدالله الفوزان", icon: Briefcase },
+const partners = [
+  { name: "شركة السويح للاستثمارات العقارية", projects: 1, value: "12,000,000", icon: Factory },
+  { name: "الشيخ راشد العليان", projects: 1, value: "10,000,000", icon: Briefcase },
+  { name: "شركة الهداب للاستشارات العقارية", projects: 1, value: "9,450,000", icon: Factory },
+  { name: "الهاجري للاستثمارات العقارية", projects: 1, value: "8,000,000", icon: Factory },
+  { name: "شركة وفال العالمية للتجهيزات العسكرية", projects: 2, value: "4,500,000", icon: Shield },
+  { name: "شركة السلامة القباع", projects: 1, value: "4,400,000", icon: Factory },
+  { name: "شركة نجوم السلام", projects: 3, value: "3,480,000", icon: Factory },
+  { name: "الشيخ ماجد عبد الله الفوزان", projects: 1, value: "3,300,000", icon: Briefcase },
+  { name: "شركة الجبر للسيارات", projects: 1, value: "2,600,000", icon: Building2 },
+  { name: "صالح بن علي القحطاني", projects: 1, value: "2,400,000", icon: Briefcase },
+  { name: "شركة العويضة العقارية", projects: 1, value: "1,800,000", icon: Factory },
+  { name: "الشيخ وليد الهداب", projects: 1, value: "1,400,000", icon: Briefcase },
+  { name: "الشيخ عبد الرحمن المحطب", projects: 1, value: "550,000", icon: Briefcase },
 ];
 
 function Partners() {
@@ -75,7 +76,7 @@ function Partners() {
           </div>
           
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((p, idx) => (
+            {partners.map((p, idx) => (
               <div 
                 key={idx}
                 className="group flex flex-col bg-white border border-border p-8 rounded-2xl shadow-sm hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
@@ -85,13 +86,17 @@ function Partners() {
                     <p.icon className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-display text-lg font-bold text-primary">{p.project}</h3>
+                    <h3 className="font-display text-lg font-bold text-primary">{p.name}</h3>
                   </div>
                 </div>
-                <div className="mt-auto border-t border-border pt-4">
-                  <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-gold inline-block"></span>
-                    <span className="opacity-75">العميل:</span> <span className="font-bold text-primary">{p.client}</span>
+                <div className="mt-auto border-t border-border pt-4 space-y-2">
+                  <p className="text-sm font-medium text-muted-foreground flex items-center justify-between">
+                    <span>عدد المشاريع:</span>
+                    <span className="font-bold text-primary">{p.projects}</span>
+                  </p>
+                  <p className="text-sm font-medium text-muted-foreground flex items-center justify-between">
+                    <span>إجمالي القيمة:</span>
+                    <span className="font-bold text-gold">{p.value} ريال</span>
                   </p>
                 </div>
               </div>
