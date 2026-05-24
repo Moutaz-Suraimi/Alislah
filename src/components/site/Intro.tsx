@@ -88,6 +88,11 @@ export function Intro() {
               className="font-display text-2xl md:text-5xl font-extrabold text-primary tracking-tight"
             >
               مؤسسة الإصلاح المعماري
+           
+
+         
+
+
             </motion.h1>
           </div>
         </motion.div>
