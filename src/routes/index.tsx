@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Layout } from "@/components/site/Layout";
 import {
   Building2,
@@ -121,106 +121,192 @@ const values = [
 
 function Home() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const yBg = useTransform(scrollY, [0, 1000], [0, 200]);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
-
     const startAutoScroll = () => {
-      // Only run on mobile/tablet (less than 1024px)
       if (window.innerWidth >= 1024) return;
-
       intervalId = setInterval(() => {
         if (scrollRef.current) {
           const container = scrollRef.current;
           const { scrollLeft, scrollWidth, clientWidth } = container;
-          
-          // Scroll left continuously (works in RTL by scrolling to negative values)
           container.scrollBy({ left: -320, behavior: "smooth" });
-
-          // Reset when reaching the end
           if (Math.abs(scrollLeft) >= scrollWidth - clientWidth - 50) {
             container.scrollTo({ left: 0, behavior: "smooth" });
           }
         }
-      }, 3000); // Move every 3 seconds
+      }, 3000);
     };
-
-    // Delay the auto-scroll start slightly to allow rendering
     const timeoutId = setTimeout(startAutoScroll, 2000);
-
     return () => {
       clearTimeout(timeoutId);
       if (intervalId) clearInterval(intervalId);
     };
   }, []);
 
+  // ─── Hero animation variants ─────────────────────────────────────────────
+  const heroContainer = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.18,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const heroItem = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 120,
+        damping: 18,
+      },
+    },
+  };
+
   return (
     <Layout transparentHeader>
-      {/* HERO */}
+      {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section className="relative flex flex-col items-center justify-center pt-40 pb-56 text-center min-h-[95vh] overflow-hidden">
-        {/* Optimized Background (No heavy framer-motion scale) */}
-        <div className="absolute inset-0 -z-20 h-full w-full bg-black">
-          <img
+
+        {/* Animated gradient keyframes */}
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes gradientShift {
+            0%   { background-position: 0%   50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0%   50%; }
+          }
+          .animate-gradient-shift {
+            background-size: 200% 200%;
+            animation: gradientShift 22s ease infinite;
+          }
+        `}} />
+
+        {/* — Layer 1: Parallax background image — */}
+        <div className="absolute inset-0 -z-20 h-[120%] w-full bg-black overflow-hidden pointer-events-none">
+          <motion.img
             src="/hero.jpg"
             alt="موقع إنشائي"
             fetchPriority="high"
             loading="eager"
-            className="h-full w-full object-cover object-center opacity-90 animate-intro-fade-in"
+            style={{ y: yBg }}
+            className="h-full w-full object-cover object-center opacity-70"
           />
         </div>
-        
-        {/* Cinematic Dark Overlay with Soft Radial Lighting */}
-        <div className="absolute inset-0 -z-10 bg-black/60 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black/30 via-black/60 to-black/90" />
-        
-        <div className="container-x relative z-10 flex flex-col items-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
-            className="font-display text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+
+        {/* — Layer 2: Deep cinematic radial dark overlay — */}
+        <div className="absolute inset-0 -z-10 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse 80% 70% at 50% 40%, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.92) 100%)"
+          }}
+        />
+
+        {/* — Layer 3: Animated subtle gold/primary accent gradient — */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-yellow-900/15 via-transparent to-primary/15 opacity-50 animate-gradient-shift pointer-events-none" />
+
+        {/* — Layer 4: Radial gold glow spotlight behind content — */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] w-[65vw] h-[65vw] max-w-[560px] max-h-[560px] rounded-full pointer-events-none -z-10"
+          style={{ background: "radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%)", filter: "blur(60px)" }}
+        />
+
+        {/* — Content — */}
+        <motion.div
+          className="container-x relative z-10 flex flex-col items-center max-w-5xl mx-auto px-4"
+          variants={heroContainer}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Eye-brow label */}
+          <motion.div
+            variants={heroItem}
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 backdrop-blur-sm px-4 py-1.5"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-gold">
+              رواد البناء في المملكة
+            </span>
+          </motion.div>
+
+          {/* Main Heading */}
+          <motion.h1
+            variants={heroItem}
+            className="font-display text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] drop-shadow-[0_2px_30px_rgba(0,0,0,0.5)]"
           >
             مؤسسة الإصلاح المعماري للمقاولات
           </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
-            className="mt-6 text-lg md:text-2xl font-medium text-white/80 max-w-3xl leading-relaxed drop-shadow-md"
+
+          {/* Sub-heading */}
+          <motion.p
+            variants={heroItem}
+            className="mt-7 text-lg md:text-xl lg:text-2xl font-medium text-white/75 max-w-3xl leading-relaxed"
           >
             نحوّل رؤيتك إلى واقع ملموس
             <br />
-            بقيادة محمد بن قرشي شراحيلي، نُبدع في تنفيذ المشاريع بأعلى معايير الجودة والاحتراف.
+            <span className="text-white/55 text-base md:text-lg">
+              بقيادة محمد بن قرشي شراحيلي، نُبدع في تنفيذ المشاريع بأعلى معايير الجودة والاحتراف.
+            </span>
           </motion.p>
-          
+
+          {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+            variants={heroItem}
             className="mt-12 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4"
           >
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center rounded-full bg-gold-gradient px-8 md:px-10 py-3 md:py-4 text-sm font-bold uppercase tracking-widest text-gold-foreground shadow-gold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]"
+            {/* Primary CTA */}
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 380, damping: 15 }}
+              className="w-full sm:w-auto"
             >
-              تواصل معنا
-            </Link>
-            <Link
-              to="/about"
-              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-8 md:px-10 py-3 md:py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:border-white/50"
+              <Link
+                to="/contact"
+                className="inline-flex w-full items-center justify-center rounded-full bg-gold-gradient px-9 md:px-11 py-3.5 md:py-4 text-sm font-bold uppercase tracking-widest text-gold-foreground shadow-gold transition-all duration-500 ease-out hover:shadow-[0_0_40px_rgba(212,175,55,0.65)] hover:brightness-110"
+              >
+                تواصل معنا
+              </Link>
+            </motion.div>
+
+            {/* Secondary CTA */}
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 380, damping: 15 }}
+              className="w-full sm:w-auto"
             >
-              اكتشف المزيد
-            </Link>
-            <a
-              href="/الإصلاح المعماري.pdf"
-              download
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-gold/40 bg-gold/10 backdrop-blur-md px-8 md:px-10 py-3 md:py-4 text-sm font-bold uppercase tracking-widest text-gold transition-all duration-300 hover:bg-gold hover:text-black hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]"
+              <Link
+                to="/about"
+                className="inline-flex w-full items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-9 md:px-11 py-3.5 md:py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-500 ease-out hover:bg-white hover:text-black hover:border-white/70 hover:shadow-[0_0_40px_rgba(255,255,255,0.35)]"
+              >
+                اكتشف المزيد
+              </Link>
+            </motion.div>
+
+            {/* Download CTA */}
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 380, damping: 15 }}
+              className="w-full sm:w-auto"
             >
-              <Briefcase className="w-4 h-4" /> تحميل البروفايل
-            </a>
+              <a
+                href="/الإصلاح المعماري.pdf"
+                download
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-gold/35 bg-gold/8 backdrop-blur-md px-9 md:px-11 py-3.5 md:py-4 text-sm font-bold uppercase tracking-widest text-gold transition-all duration-500 ease-out hover:bg-gold hover:text-black hover:border-gold hover:shadow-[0_0_40px_rgba(212,175,55,0.45)]"
+              >
+                <Briefcase className="w-4 h-4" /> تحميل البروفايل
+              </a>
+            </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
+
 
       {/* 3 HIGHLIGHT CARDS (OVERLAPPING HERO) */}
       <section className="relative z-20 -mt-32 pb-20">

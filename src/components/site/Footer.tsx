@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Hash } from "lucide-react";
 
 export function Footer() {
   return (
@@ -30,6 +30,25 @@ export function Footer() {
             مؤسسة سعودية وطنية متخصصة في المقاولات العامة والإنشاءات، نُنفّذ المشاريع السكنية
             والتجارية والصناعية والحكومية بأعلى معايير الجودة والسلامة منذ تأسيسنا.
           </p>
+
+          {/* Ministry of Commerce Badge + CR Number */}
+          <div className="mt-6 flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 px-4 py-3 w-fit">
+            <img
+              src="/%D9%88%D8%B2%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D8%A9.jpg"
+              alt="وزارة التجارة السعودية"
+              className="h-14 w-14 object-contain rounded-lg bg-white p-1"
+              loading="lazy"
+            />
+            <div className="flex flex-col gap-1">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-gold">
+                وزارة التجارة
+              </span>
+              <div className="flex items-center gap-1.5 text-sm font-semibold text-primary-foreground/90">
+                <Hash className="h-3.5 w-3.5 text-gold shrink-0" />
+                <span>السجل التجاري: <span className="text-gold font-bold tracking-wide">1010745510</span></span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div>
@@ -90,7 +109,7 @@ export function Footer() {
           <div className="flex gap-4 items-center">
             <p>الرياض، المملكة العربية السعودية</p>
             <span className="h-3 w-px bg-white/20"></span>
-            <p>تم التصميم والتطوير بواسطة <Link href="https://suriix.com/">Suriix</Link> </p>
+            <p>تم التصميم والتطوير بواسطة <a href="https://suriix.com/" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">Suriix</a></p>
           </div>
         </div>
       </div>
