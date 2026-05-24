@@ -146,11 +146,9 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button — always white for visibility */}
         <button
-          className={`lg:hidden p-2 rounded-lg transition-colors ${
-            scrolled || transparent ? "text-white hover:bg-white/10" : "text-primary hover:bg-accent"
-          }`}
+          className="lg:hidden p-2 rounded-lg transition-colors text-white hover:bg-white/10"
           onClick={() => setOpen(!open)}
           aria-label="القائمة"
         >
@@ -158,19 +156,15 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
         </button>
       </div>
 
-      {/* Smooth Mobile Menu Overlay */}
+      {/* Smooth Mobile Menu Overlay — always dark for readability */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -15 }}
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className={`border-t lg:hidden shadow-2xl relative z-40 ${
-              scrolled || transparent 
-                ? "bg-black/95 border-white/10 text-white" 
-                : "bg-background border-border/80 text-primary"
-            }`}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="border-t border-white/10 bg-black/95 backdrop-blur-xl lg:hidden shadow-2xl relative z-40"
           >
             <div className="container-x flex flex-col gap-1.5 py-6">
               {nav.map((n) => (
@@ -178,21 +172,19 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                   key={n.to}
                   to={n.to}
                   onClick={() => setOpen(false)}
-                  className={`rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-300 ${
-                    scrolled || transparent ? "text-white/80 hover:bg-white/10" : "text-primary/85 hover:bg-accent"
-                  }`}
+                  className="rounded-xl px-4 py-3 text-sm font-semibold text-white/80 hover:bg-white/10 hover:text-white transition-all duration-300"
                   activeProps={{
-                    className: "bg-gold/10 text-gold font-bold"
+                    className: "bg-gold/15 text-gold font-bold"
                   }}
                   activeOptions={{ exact: n.to === "/" }}
                 >
                   {n.label}
                 </Link>
               ))}
-              <div className="mt-4 border-t border-border/30 pt-5">
+              <div className="mt-4 border-t border-white/10 pt-5">
                 <a
                   href="tel:+966500708534"
-                  className="flex items-center justify-center gap-2 rounded-xl bg-gold-gradient px-5 py-3.5 text-sm font-bold text-gold-foreground shadow-gold transition-all duration-500 ease-out hover:scale-103 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-gold-gradient px-5 py-3.5 text-sm font-bold text-gold-foreground shadow-gold transition-all duration-300"
                 >
                   <Phone className="h-4 w-4" /> اتصل بنا الآن
                 </a>

@@ -90,14 +90,14 @@ function About() {
           </div>
 
           <style dangerouslySetInnerHTML={{__html: `
-            @keyframes goldPulse {
-              0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); background-position: 0% 50%; }
-              50% { box-shadow: 0 0 30px 6px rgba(212,175,55,0.18); background-position: 100% 50%; }
+            @keyframes goldGlow {
+              0%, 100% { opacity: 0.85; transform: scale(1); }
+              50%        { opacity: 1;    transform: scale(1.01); }
             }
             .stat-card {
-              background: linear-gradient(135deg, rgba(212,175,55,0.12) 0%, rgba(212,175,55,0.04) 50%, rgba(212,175,55,0.12) 100%);
-              background-size: 200% 200%;
-              animation: goldPulse 3s ease-in-out infinite;
+              background: linear-gradient(135deg, rgba(212,175,55,0.13) 0%, rgba(212,175,55,0.04) 50%, rgba(212,175,55,0.13) 100%);
+              animation: goldGlow 3s ease-in-out infinite;
+              will-change: opacity, transform;
             }
             .stat-card:nth-child(2) { animation-delay: 1s; }
             .stat-card:nth-child(3) { animation-delay: 2s; }

@@ -195,7 +195,7 @@ function Home() {
             alt="موقع إنشائي"
             fetchPriority="high"
             loading="eager"
-            style={{ y: yBg }}
+            style={{ y: yBg, willChange: "transform" }}
             className="h-full w-full object-cover object-center opacity-70"
           />
         </div>
@@ -212,7 +212,7 @@ function Home() {
 
         {/* — Layer 4: Radial gold glow spotlight behind content — */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] w-[65vw] h-[65vw] max-w-[560px] max-h-[560px] rounded-full pointer-events-none -z-10"
-          style={{ background: "radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%)", filter: "blur(60px)" }}
+          style={{ background: "radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%)", filter: "blur(48px)", willChange: "transform" }}
         />
 
         {/* — Content — */}
