@@ -1,6 +1,5 @@
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { motion } from "framer-motion";
 
 export function Layout({
   children,
@@ -14,32 +13,27 @@ export function Layout({
       {/* Global Background from Intro */}
       <div className="fixed inset-0 -z-50 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-50 via-white to-white" />
 
-      {/* Animated Gold Pulses in Background */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.3, 0.1],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="fixed top-1/4 -start-20 -z-40 h-[40rem] w-[40rem] rounded-full bg-gold blur-[150px] pointer-events-none"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-        className="fixed bottom-1/4 -end-20 -z-40 h-[50rem] w-[50rem] rounded-full bg-gold blur-[180px] pointer-events-none"
-      />
+      {/* Subtle Gold Ambient Pulses — CSS only, opacity-only, no scale, no repaint */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes layoutPulse1 {
+          0%, 100% { opacity: 0.08; }
+          50%       { opacity: 0.18; }
+        }
+        @keyframes layoutPulse2 {
+          0%, 100% { opacity: 0.06; }
+          50%       { opacity: 0.14; }
+        }
+        .layout-glow-1 {
+          animation: layoutPulse1 7s ease-in-out infinite;
+          will-change: opacity;
+        }
+        .layout-glow-2 {
+          animation: layoutPulse2 9s ease-in-out infinite 2s;
+          will-change: opacity;
+        }
+      `}} />
+      <div className="layout-glow-1 fixed top-1/4 -start-20 -z-40 h-[28rem] w-[28rem] rounded-full bg-gold blur-[100px] pointer-events-none" />
+      <div className="layout-glow-2 fixed bottom-1/4 -end-20 -z-40 h-[32rem] w-[32rem] rounded-full bg-gold blur-[120px] pointer-events-none" />
 
       <Header transparent={transparentHeader} />
       <main className="flex-1">{children}</main>

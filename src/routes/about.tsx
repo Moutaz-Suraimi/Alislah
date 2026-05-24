@@ -69,7 +69,7 @@ function About() {
               <div className="absolute inset-0 bg-primary/10"></div>
             </div>
             {/* Overlapping Badge */}
-            <div className="absolute -bottom-8 -start-8 bg-white p-6 rounded-full shadow-xl hidden md:flex items-center justify-center animate-[spin_20s_linear_infinite]">
+            <div className="absolute -bottom-8 -start-8 bg-white p-6 rounded-full shadow-xl hidden md:flex items-center justify-center">
               <div className="w-32 h-32 rounded-full border border-dashed border-gold flex items-center justify-center">
                 <span className="text-primary font-bold text-center text-sm">الإصلاح المعماري • خبرة وموثوقية •</span>
               </div>
@@ -91,13 +91,13 @@ function About() {
 
           <style dangerouslySetInnerHTML={{__html: `
             @keyframes goldGlow {
-              0%, 100% { opacity: 0.85; transform: scale(1); }
-              50%        { opacity: 1;    transform: scale(1.01); }
+              0%, 100% { opacity: 0.8; }
+              50%        { opacity: 1; }
             }
             .stat-card {
               background: linear-gradient(135deg, rgba(212,175,55,0.13) 0%, rgba(212,175,55,0.04) 50%, rgba(212,175,55,0.13) 100%);
               animation: goldGlow 3s ease-in-out infinite;
-              will-change: opacity, transform;
+              will-change: opacity;
             }
             .stat-card:nth-child(2) { animation-delay: 1s; }
             .stat-card:nth-child(3) { animation-delay: 2s; }
