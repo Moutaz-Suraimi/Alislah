@@ -15,4 +15,7 @@ export default defineConfig({
     tailwindcss(),
     tsconfigPaths(),
   ],
+  define: {
+    "import.meta.env.VITE_IS_VERCEL": JSON.stringify(process.env.VERCEL || ""),
+  },
 });

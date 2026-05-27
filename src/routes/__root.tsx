@@ -102,9 +102,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 import { Intro } from "@/components/site/Intro";
+import { Maintenance } from "@/components/site/Maintenance";
+
+const isSiteClosed =
+  import.meta.env.VITE_SITE_CLOSED === "true" ||
+  (import.meta.env.VITE_SITE_CLOSED !== "false" && (
+    import.meta.env.VITE_IS_VERCEL === "1" ||
+    (typeof window !== "undefined" && window.location.hostname.includes("vercel.app"))
+  ));
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  if (isSiteClosed) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <Maintenance />
+      </QueryClientProvider>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
