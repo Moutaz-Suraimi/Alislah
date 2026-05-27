@@ -119,9 +119,9 @@ export function Maintenance() {
           variants={itemVariants}
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 backdrop-blur-md px-4 py-1.5"
         >
-          <AlertTriangle className="h-4 w-4 text-gold animate-pulse" />
+          <AlertTriangle className="h-4 w-4 text-gold" />
           <span className="text-xs font-bold tracking-wider text-gold">
-            الموقع مغلق مؤقتاً للتحديث والصيانة
+            الموقع مغلق حالياً
           </span>
         </motion.div>
 
@@ -130,7 +130,7 @@ export function Maintenance() {
           variants={itemVariants}
           className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
         >
-          نعمل على تطوير موقعنا لنلبي تطلعاتكم قريباً
+          الموقع الإلكتروني مغلق حالياً
         </motion.h1>
 
         {/* Text description */}
@@ -138,8 +138,7 @@ export function Maintenance() {
           variants={itemVariants}
           className="mt-6 text-sm sm:text-base md:text-lg text-white/70 max-w-2xl mx-auto leading-relaxed"
         >
-          عملائنا الكرام، نقوم حالياً بإجراء بعض التحسينات التقنية وتحديث خدماتنا على الموقع الإلكتروني لتقديم تجربة تصفح متكاملة تليق بثقتكم الغالية. 
-          خلال هذه الفترة، <span className="text-gold font-semibold">تستمر أعمالنا كالمعتاد</span> ويسعدنا دائماً خدمتكم وتلقي استفساراتكم ومخططاتكم مباشرة عبر القنوات التالية:
+          عملائنا الكرام، نود إحاطتكم بأن الموقع الإلكتروني مغلق حالياً. أعمالنا ومشاريعنا مستمرة كالمعتاد دون أي توقف، ويسعدنا دائماً تواصلكم المباشر معنا وخدمتكم وتلقي طلباتكم عبر قنوات الاتصال الرسمية التالية:
         </motion.p>
 
         {/* Contact Links Grid */}
