@@ -16,19 +16,19 @@ export function Layout({
       {/* Subtle Gold Ambient Pulses — CSS only, opacity-only, no scale, no repaint */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes layoutPulse1 {
-          0%, 100% { opacity: 0.08; }
-          50%       { opacity: 0.18; }
+          0%, 100% { opacity: 0.01; }
+          50%       { opacity: 0.04; }
         }
         @keyframes layoutPulse2 {
-          0%, 100% { opacity: 0.06; }
-          50%       { opacity: 0.14; }
+          0%, 100% { opacity: 0.01; }
+          50%       { opacity: 0.03; }
         }
         .layout-glow-1 {
-          animation: layoutPulse1 7s ease-in-out infinite;
+          animation: layoutPulse1 9s ease-in-out infinite;
           will-change: opacity;
         }
         .layout-glow-2 {
-          animation: layoutPulse2 9s ease-in-out infinite 2s;
+          animation: layoutPulse2 11s ease-in-out infinite 2.5s;
           will-change: opacity;
         }
       `}} />
